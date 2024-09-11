@@ -56,11 +56,14 @@ def index(request):
 def datatable(request):
     try:
         s=""
+        idAvoct = ""
+        alert=""
         getuser = request.user.id
         idAvoct = dao_get.getAvocatByUser(getuser)
-        alert = dao_get.NewDossier(idAvoct.id)
-        if alert:
-            s = "vrai"
+        if idAvoct:
+            alert = dao_get.NewDossier(idAvoct.id)
+            if alert:
+                s = "vrai"
         getClient = dao_get.getClient()
 
         context = {"Client":getClient,'alert':alert,"s":s}
@@ -375,11 +378,14 @@ def fixerRdv(request):
 def Repertoire(request):
     try:
         s=""
+        idAvoct=""
+        alert=""
         getuser = request.user.id
         idAvoct = dao_get.getAvocatByUser(getuser)
-        alert = dao_get.NewDossier(idAvoct.id)
-        if alert:
-            s = "vrai"
+        if idAvoct:
+            alert = dao_get.NewDossier(idAvoct.id)
+            if alert:
+                s = "vrai"
         repertoire = dao_get.repertoire()
         context = {'repertoire':repertoire,'alert':alert,"s":s}
         template = loader.get_template('repetoire.html')
@@ -392,11 +398,14 @@ def Repertoire(request):
 def ListeDossierClient(request):
     try:
         s=""
+        idAvoct=""
+        alert=""
         getuser = request.user.id
         idAvoct = dao_get.getAvocatByUser(getuser)
-        alert = dao_get.NewDossier(idAvoct.id)
-        if alert:
-            s = "vrai"
+        if idAvoct:
+            alert = dao_get.NewDossier(idAvoct.id)
+            if alert:
+                s = "vrai"
         dossier = dao_get.getDossier()
         context = {'dossier':dossier,'alert':alert,"s":s}
         template = loader.get_template('listedossiercleint.html')
@@ -410,11 +419,14 @@ def ListeDossierClient(request):
 def ListePaiementClient(request):
     try:
         s=""
+        idAvoct=""
+        alert=""
         getuser = request.user.id
         idAvoct = dao_get.getAvocatByUser(getuser)
-        alert = dao_get.NewDossier(idAvoct.id)
-        if alert:
-            s = "vrai"
+        if idAvoct:
+            alert = dao_get.NewDossier(idAvoct.id)
+            if alert:
+                s = "vrai"
         paiement = dao_get.paiement()
         context = {'paiement':paiement,'alert':alert,"s":s}
         template = loader.get_template('listepaiementclient.html')
@@ -428,11 +440,14 @@ def ListePaiementClient(request):
 def ListeDossierPeriode(request):
     try:
         s=""
+        idAvoct=""
+        alert=""
         getuser = request.user.id
         idAvoct = dao_get.getAvocatByUser(getuser)
-        alert = dao_get.NewDossier(idAvoct.id)
-        if alert:
-            s = "vrai"
+        if idAvoct:
+            alert = dao_get.NewDossier(idAvoct.id)
+            if alert:
+                s = "vrai"
 
         dossier = dao_get.getDossier()
         context = {'dossier':dossier,'alert':alert,"s":s}
@@ -450,6 +465,7 @@ def ClientsConsulte(request):
         idAvoct=""
         alert=""
         getuser = request.user.id
+        rdv2 = ""
         idAvoct = dao_get.getAvocatByUser(getuser)
         if idAvoct:
             alert = dao_get.NewDossier(idAvoct.id)
