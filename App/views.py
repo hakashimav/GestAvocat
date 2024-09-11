@@ -132,11 +132,14 @@ def sendDate(request,id):
 def dataAvocat(request,id):
     try:
         s=""
+        idAvoct=""
+        alert=""
         getuser = request.user.id
-        idAvoct = dao_get.getAvocatByUser(getuser)
-        alert = dao_get.NewDossier(idAvoct.id)
-        if alert:
-            s = "vrai"
+        if idAvoct:
+            idAvoct = dao_get.getAvocatByUser(getuser)
+            alert = dao_get.NewDossier(idAvoct.id)
+            if alert:
+                s = "vrai"
         getAvocat = dao_get.getAvocat()
         idDossier = id
         context = {'Avocat':getAvocat,"idDossier":idDossier,'alert':alert,"s":s}
@@ -452,9 +455,10 @@ def ClientsConsulte(request):
             alert = dao_get.NewDossier(idAvoct.id)
             if alert:
                 s = "vrai"
+            rdv2 = dao_get.filterRdvByAvocat(idAvoct.id)
 
         rdv = dao_get.getRdv()
-        context = {'alert':alert,"s":s,'rdv':rdv}
+        context = {'alert':alert,"s":s,'rdv':rdv,'rdv2':rdv2}
         template = loader.get_template('clientconsulte.html')
         return HttpResponse(template.render(context, request))
     
