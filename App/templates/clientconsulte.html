@@ -165,23 +165,21 @@
 						<table class="table hover multiple-select-row data-table-export nowrap">
 							<thead>
 								<tr>
-									<th class="table-plus datatable-nosort">Noms</th>
-									<th>Genre</th>
-									<th>Etat-Civil</th>
-									<th>Téléphone</th>
-									<th>Adresse mail</th>
-									<th>Date création</th>
+									<th class="table-plus datatable-nosort">N°</th>
+									<th>Date</th>
+									<th>Nom client</th>
+									<th>Nom Avocat</th>
+									<th>Dossier</th>
 								</tr>
 							</thead>
 							<tbody>
-								{%for Clients in Client%}
+								{%for rdvs in rdv%}
 								<tr>
-									<td class="table-plus">{{Clients.PrenonCient}} {{Clients.NomClient}}</td>
-									<td>{{Clients.etaClient}}</td>
-									<td>{{Clients.EtatciviCleint}}</td>
-									<td>{{Clients.NumClien}} </td>
-									<td>{{Clients.FaxClient}}</td>
-									<td>{{Clients.Date_create.date}}</td>
+									<td class="table-plus">{{rdvs.id}}</td>
+									<td>{{rdvs.Date_create.date}}</td>
+									<td>{{rdvs.NumClient.PrenonCient}} {{rdvs.NumClient.NomClient}}</td>
+									<td>{{rdvs.MatriAvoc.PrenAct}} {{rdvs.MatriAvoc.NomAct}}</td>
+									<td>{{rdvs.dossier.ElemDoss}}</td>
 								</tr>
 								{%endfor%}
 							</tbody>

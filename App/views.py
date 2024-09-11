@@ -340,7 +340,7 @@ def fixerRdv(request):
             client = request.POST.get('client', None)
             IdDossier = request.POST.get('IdDossier', None)
             
-            data = dao_Add.addRdv(MotifRendez,ObserRendez,HeureRendez,client,avocat)
+            data = dao_Add.addRdv(MotifRendez,ObserRendez,HeureRendez,client,avocat,IdDossier)
 
             if data:
                 getDossier = dao_get.getDossierById(IdDossier)
@@ -444,12 +444,17 @@ def ListeDossierPeriode(request):
 def ClientsConsulte(request):
     try:
         s=""
+        idAvoct=""
+        alert=""
         getuser = request.user.id
         idAvoct = dao_get.getAvocatByUser(getuser)
-        alert = dao_get.NewDossier(idAvoct.id)
-        if alert:
-            s = "vrai"
-        context = {'alert':alert,"s":s}
+        if idAvoct:
+            alert = dao_get.NewDossier(idAvoct.id)
+            if alert:
+                s = "vrai"
+
+        rdv = dao_get.getRdv()
+        context = {'alert':alert,"s":s,'rdv':rdv}
         template = loader.get_template('clientconsulte.html')
         return HttpResponse(template.render(context, request))
     
