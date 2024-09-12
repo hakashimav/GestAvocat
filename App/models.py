@@ -60,11 +60,14 @@ class Nationalite(models.Model):
 
 
 class Rendez_vous(models.Model):
+    dossier=models.ForeignKey('Dossier', related_name='dossier_rdv', null=True, blank=True, on_delete=models.CASCADE)
     MotifRendez=models.CharField(max_length=150,null=True,blank=True)
     HeureRendez=models.TimeField()
     ObserRendez=models.CharField(max_length=150,null=True,blank=True)
     NumClient=models.ForeignKey('Client', related_name='RdvCleint', null=True, blank=True, on_delete=models.CASCADE)
     MatriAvoc=models.ForeignKey('Avocat', related_name='RdvAvoc', null=True, blank=True, on_delete=models.CASCADE)
+    Date_create=models.DateTimeField(auto_now_add=True)
+
 
 
 

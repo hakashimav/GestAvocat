@@ -4,7 +4,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>YMA</title>
+	<title>Effectif des clients consultés par date</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -128,6 +128,7 @@
 
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
+			{% if user.groups.all.0.name == 'Avocat' %}
 			<div class="min-height-200px">
 				<div class="page-header">
 					<div class="row">
@@ -165,23 +166,21 @@
 						<table class="table hover multiple-select-row data-table-export nowrap">
 							<thead>
 								<tr>
-									<th class="table-plus datatable-nosort">Noms</th>
-									<th>Genre</th>
-									<th>Etat-Civil</th>
-									<th>Téléphone</th>
-									<th>Adresse mail</th>
-									<th>Date création</th>
+									<th class="table-plus datatable-nosort">N°</th>
+									<th>Date</th>
+									<th>Nom client</th>
+									<th>Nom Avocat</th>
+									<th>Dossier</th>
 								</tr>
 							</thead>
 							<tbody>
-								{%for Clients in Client%}
+								{%for rdvs in rdv2%}
 								<tr>
-									<td class="table-plus">{{Clients.PrenonCient}} {{Clients.NomClient}}</td>
-									<td>{{Clients.etaClient}}</td>
-									<td>{{Clients.EtatciviCleint}}</td>
-									<td>{{Clients.NumClien}} </td>
-									<td>{{Clients.FaxClient}}</td>
-									<td>{{Clients.Date_create.date}}</td>
+									<td class="table-plus">{{rdvs.id}}</td>
+									<td>{{rdvs.Date_create.date}}</td>
+									<td>{{rdvs.NumClient.PrenonCient}} {{rdvs.NumClient.NomClient}}</td>
+									<td>{{rdvs.MatriAvoc.PrenAct}} {{rdvs.MatriAvoc.NomAct}}</td>
+									<td>{{rdvs.dossier.ElemDoss}}</td>
 								</tr>
 								{%endfor%}
 							</tbody>
@@ -190,6 +189,68 @@
 				</div>
 				<!-- Export Datatable End -->
 			</div>
+			{%else%}
+			<div class="min-height-200px">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="title">
+								<h4>DataTable</h4>
+							</div>
+							<nav aria-label="breadcrumb" role="navigation">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">DataTable</li>
+								</ol>
+							</nav>
+						</div>
+						<div class="col-md-6 col-sm-12 text-right">
+							<div class="dropdown">
+								<a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+									January 2018
+								</a>
+								<div class="dropdown-menu dropdown-menu-right">
+									<a class="dropdown-item" href="#">Export List</a>
+									<a class="dropdown-item" href="#">Policies</a>
+									<a class="dropdown-item" href="#">View Assets</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Export Datatable start -->
+				<div class="card-box mb-30">
+					<div class="pd-20">
+						<h4 class="text-blue h4">Base de données Client</h4>
+					</div>
+					<div class="pb-20">
+						<table class="table hover multiple-select-row data-table-export nowrap">
+							<thead>
+								<tr>
+									<th class="table-plus datatable-nosort">N°</th>
+									<th>Date</th>
+									<th>Nom client</th>
+									<th>Nom Avocat</th>
+									<th>Dossier</th>
+								</tr>
+							</thead>
+							<tbody>
+								{%for rdvs in rdv%}
+								<tr>
+									<td class="table-plus">{{rdvs.id}}</td>
+									<td>{{rdvs.Date_create.date}}</td>
+									<td>{{rdvs.NumClient.PrenonCient}} {{rdvs.NumClient.NomClient}}</td>
+									<td>{{rdvs.MatriAvoc.PrenAct}} {{rdvs.MatriAvoc.NomAct}}</td>
+									<td>{{rdvs.dossier.ElemDoss}}</td>
+								</tr>
+								{%endfor%}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- Export Datatable End -->
+			</div>
+			{%endif%}
 			<div class="footer-wrap pd-20 mb-20 card-box">
 				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
 			</div>

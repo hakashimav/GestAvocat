@@ -31,9 +31,9 @@ class dao_Add(object):
         
 
     @staticmethod
-    def addRdv(Motif,observe,heur,NumCl,avoc):
+    def addRdv(Motif,observe,heur,NumCl,avoc,dos):
         try:
-            rdv = Rendez_vous(MotifRendez=Motif,ObserRendez=observe,HeureRendez=heur,NumClient_id=NumCl,MatriAvoc_id=avoc)
+            rdv = Rendez_vous(MotifRendez=Motif,ObserRendez=observe,HeureRendez=heur,NumClient_id=NumCl,MatriAvoc_id=avoc,dossier_id=dos)
             rdv.save()
             return rdv
         except Exception as e:

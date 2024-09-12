@@ -12,6 +12,7 @@
         </div>
     </div>
     <div class="header-right">
+        {% if user.groups.all.0.name == 'Avocat' %}
         <div class="dashboard-setting user-notification">
             <div class="dropdown">
                 <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
@@ -19,6 +20,8 @@
                 </a>
             </div>
         </div>
+        {%endif%}
+        {% if user.groups.all.0.name == 'Avocat' %}
         <div class="user-notification">
             <div class="dropdown">
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
@@ -44,6 +47,7 @@
                 </div>
             </div>
         </div>
+        {%endif%}
         <div class="user-info-dropdown">
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">

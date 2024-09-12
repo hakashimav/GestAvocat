@@ -165,3 +165,17 @@ class dao_get(object):
             return dos
         except:
             return None
+        
+    @staticmethod
+    def getRdv():
+        try:
+            return Rendez_vous.objects.all().order_by('-id')
+        except:
+            return None
+    
+    @staticmethod
+    def filterRdvByAvocat(id):
+        try:
+            return Rendez_vous.objects.filter(MatriAvoc_id=id).order_by('-id')
+        except:
+            return None
