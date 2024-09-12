@@ -56,7 +56,7 @@ ROOT_URLCONF = 'ConsultClient.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +68,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'ConsultClient.wsgi.application'
 
@@ -118,14 +119,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-if DEBUG:
-    STATIC_ROOT = '/static/'
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-if DEBUG:
-    STATICFILES_DIRS=(
-        os.path.join(BASE_DIR,'static'),
-    )
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# if DEBUG:
+#     STATIC_ROOT = '/static/'
+# else:
+#     STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+# if DEBUG:
+#     STATICFILES_DIRS=(
+#         os.path.join(BASE_DIR,'static'),
+#     )
 
 
 if DEBUG:
